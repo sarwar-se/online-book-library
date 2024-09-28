@@ -6,7 +6,7 @@
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url('./assets/images/PublicImages/image-2.jpg');
   opacity: var(--mainOpacity);
-  height: 25em !important;
+  height: 25rem !important;
 }
 
 .dark-overlay {
