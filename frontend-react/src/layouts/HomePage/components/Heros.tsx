@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const Heros = () => {
   return (
@@ -23,9 +24,9 @@ export const Heros = () => {
                 ab. Velit dolor dicta aliquid libero accusamus nulla dolore debitis earum laudantium
                 cumque!
               </p>
-              <a className='btn main-color btn-lg text-white' href='#'>
+              <Link className='btn main-color btn-lg text-white' to='#'>
                 Sign up
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -58,9 +59,9 @@ export const Heros = () => {
                 eveniet similique maiores hic nihil enim cumque sit? Ducimus ab eius enim,
                 voluptatibus cum neque vero quae explicabo. Distinctio doloribus harum aliquid,
               </p>
-              <a className='btn main-color btn-lg text-white' href='#'>
+              <Link className='btn main-color btn-lg text-white' to='#'>
                 Sign up
-              </a>
+              </Link>
             </div>
           </div>
           <div className='m-2'>

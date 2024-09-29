@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 export const Navbar = () => {
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark main-color py-3'>
+    <nav className='navbar navbar-expand-lg navbar-dark main-color py-2'>
       <div className='container-fluid'>
         <span className='navbar-brand'>Book Library</span>
         <button
@@ -19,21 +20,21 @@ export const Navbar = () => {
         <div className='collapse navbar-collapse' id='navbarNavDropdown'>
           <ul className='navbar-nav'>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <NavLink className='nav-link' to='/home'>
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#'>
+              <NavLink className='nav-link' to='/search'>
                 Search Books
-              </a>
+              </NavLink>
             </li>
           </ul>
           <ul className='navbar-nav ms-auto'>
             <li className='nav-item m-1'>
-              <a className='btn btn-outline-light' type='button' href='#'>
+              <Link className='btn btn-outline-light' type='button' to='#'>
                 Sign in
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -3,6 +3,7 @@ import BookModel from '../../models/BookModel';
 import { AppSpinner } from '../Utils/AppSpinner';
 import { SearchBook } from './components/SearchBook';
 import { Pagination } from '../Utils/Pagination';
+import { Link, NavLink } from 'react-router-dom';
 
 export const SearchBooksPage = () => {
   const [books, setBooks] = useState<BookModel[]>([]);
@@ -61,11 +62,7 @@ export const SearchBooksPage = () => {
       setHttpError(error.message);
     });
     window.scrollTo(0, 0);
-  }, [currentPage, searchUrl]);
-
-  if (isLoading) {
-    return <AppSpinner />;
-  }
+  }, [currentPage, searchUrl, booksPerPage]);
 
   if (httpError) {
     return (
@@ -138,60 +135,70 @@ export const SearchBooksPage = () => {
                 </button>
                 <ul className='dropdown-menu' aria-labelledby='dropdownMenu'>
                   <li onClick={() => categoryField('All')}>
-                    <a className='dropdown-item' href='#'>
+                    <Link className='dropdown-item' to='#'>
                       All
-                    </a>
+                    </Link>
                   </li>
                   <li onClick={() => categoryField('FE')}>
-                    <a className='dropdown-item' href='#'>
+                    <Link className='dropdown-item' to='#'>
                       Front End
-                    </a>
+                    </Link>
                   </li>
                   <li onClick={() => categoryField('BE')}>
-                    <a className='dropdown-item' href='#'>
+                    <Link className='dropdown-item' to='#'>
                       Back End
-                    </a>
+                    </Link>
                   </li>
                   <li onClick={() => categoryField('Data')}>
-                    <a className='dropdown-item' href='#'>
+                    <Link className='dropdown-item' to='#'>
                       Data
-                    </a>
+                    </Link>
                   </li>
                   <li onClick={() => categoryField('DevOps')}>
-                    <a className='dropdown-item' href='#'>
+                    <Link className='dropdown-item' to='#'>
                       DevOps
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
-          {totalAmountOfBooks > 0 ? (
+          {isLoading ? (
+            <AppSpinner />
+          ) : (
             <>
-              <div className='mt-3'>
-                <h5>Number of results: ({totalAmountOfBooks})</h5>
-              </div>
-              <p>
-                {indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks} items
-              </p>
-              {books.map((book) => (
-                <SearchBook book={book} key={book.id} />
-              ))}
-              {totalPages > 1 && (
-                <Pagination currentPage={currentPage} totalPages={totalPages} paginate={paginate} />
+              {totalAmountOfBooks > 0 ? (
+                <>
+                  <div className='mt-3'>
+                    <h5>Number of results: ({totalAmountOfBooks})</h5>
+                  </div>
+                  <p>
+                    {indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks} items
+                  </p>
+                  {books.map((book) => (
+                    <SearchBook book={book} key={book.id} />
+                  ))}
+                  {totalPages > 1 && (
+                    <Pagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      paginate={paginate}
+                    />
+                  )}
+                </>
+              ) : (
+                <div className='m-5'>
+                  <h3>Can't find what you are looking for?</h3>
+                  <NavLink
+                    className='btn main-color btn-md px-4 me-md-2 fw-bold text-white'
+                    type='button'
+                    to='#'
+                  >
+                    Library Service
+                  </NavLink>
+                </div>
               )}
             </>
-          ) : (
-            <div className='m-5'>
-              <h3>Can't find what you are looking for?</h3>
-              <a
-                className='btn main-color btn-md px-4 me-md-2 fw-bold text-white'
-                type='button'
-                href='#'
-              >
-                Library Service
-              </a>
-            </div>
           )}
         </div>
       </div>
